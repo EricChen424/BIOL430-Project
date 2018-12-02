@@ -1,0 +1,6 @@
+name,chromosome,strand,start,end,correlated_gene,starting_feature,ending_feature,tir,tsd,family,superfamily,sequence,genome_id
+AT1M10,1,-,255103,255179,NULL,,,13,3,Unclassified,Unclassified,,1
+AT1M10,1,-,253498,253574,NULL,,,13,3,Unclassified,Unclassified,,2
+AT1M10,1,-,255561,255637,NULL,,,13,3,Unclassified,Unclassified,,3
+AT1M10,1,-,255321,255397,NULL,,,13,3,Unclassified,Unclassified,,4
+AT1M10,1,-,255769,255845,NULL,,,13,3,Unclassified,Unclassified,,5
