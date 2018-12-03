@@ -47,46 +47,30 @@ class TestGeneticElementIndex(TestCase):
         expected_index = {
             1: {
                 1: {
-                    "+": {
-                        "ABC1": mite1,
-                        "gABC1": gene1
-                    },
-                    "-": {
-                        "ABC2": mite2,
-                        "gABC2": gene2
-                    }
+                    "ABC1": mite1,
+                    "gABC1": gene1,
+                    "ABC2": mite2,
+                    "gABC2": gene2
                 },
                 2: {
-                    "+": {
-                        "ABC3": mite3,
-                        "gABC3": gene3
-                    },
-                    "-": {
-                        "ABC4": mite4,
-                        "gABC4": gene4
-                    }
+                    "ABC3": mite3,
+                    "gABC3": gene3,
+                    "ABC4": mite4,
+                    "gABC4": gene4
                 }
             },
             2: {
                 1: {
-                    "+": {
-                        "ABC5": mite5,
-                        "gABC5": gene5
-                    },
-                    "-": {
-                        "ABC6": mite6,
-                        "gABC6": gene6
-                    }
+                    "ABC5": mite5,
+                    "gABC5": gene5,
+                    "ABC6": mite6,
+                    "gABC6": gene6
                 },
                 2: {
-                    "+": {
-                        "ABC7": mite7,
-                        "gABC7": gene7
-                    },
-                    "-": {
-                        "ABC8": mite8,
-                        "gABC8": gene8
-                    }
+                    "ABC7": mite7,
+                    "gABC7": gene7,
+                    "ABC8": mite8,
+                    "gABC8": gene8
                 }
             }
         }
@@ -133,24 +117,12 @@ class TestGeneticElementIndex(TestCase):
 
         expected_index = {
             1: {
-                1: {
-                    "+": [mite1, gene1],
-                    "-": [mite2, gene2]
-                },
-                2: {
-                    "+": [mite3, gene3],
-                    "-": [mite4, gene4]
-                }
+                1: [mite1, mite2, gene1, gene2],
+                2: [mite3, mite4, gene3, gene4]
             },
             2: {
-                1: {
-                    "+": [gene5, mite5],
-                    "-": [gene6, mite6]
-                },
-                2: {
-                    "+": [gene7, mite7],
-                    "-": [gene8, mite8]
-                }
+                1: [gene5, gene6, mite5, mite6],
+                2: [gene7, gene8, mite7, mite8]
             }
         }
 

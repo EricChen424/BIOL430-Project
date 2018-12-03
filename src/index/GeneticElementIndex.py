@@ -8,28 +8,22 @@ class GeneticElementIndex:
         for element in elements:
             genome = element.genome_id
             chromosome = element.chromosome
-            strand = element.strand
             name = element.name
 
             if genome not in index:
                 index[genome] = {}
 
-            genome_idx = index[genome]
+            genome_dict = index[genome]
 
-            if chromosome not in genome_idx:
-                genome_idx[chromosome] = {}
+            if chromosome not in genome_dict:
+                genome_dict[chromosome] = {} if by_name else []
 
-            chromosome_idx = genome_idx[chromosome]
-
-            if strand not in chromosome_idx:
-                chromosome_idx[strand] = {} if by_name else []
-
-            strand_idx = chromosome_idx[strand]
+            chromosome_dict = genome_dict[chromosome]
 
             if by_name:
-                assert name not in strand_idx
-                strand_idx[name] = element
+                assert name not in chromosome_dict
+                chromosome_dict[name] = element
             else:
-                strand_idx.append(element)
+                chromosome_dict.append(element)
 
         return index

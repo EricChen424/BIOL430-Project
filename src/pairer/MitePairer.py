@@ -28,7 +28,7 @@ class MitePairer:
         return None
 
     def _is_contained_in(self, gene, mite):
-        return mite.start <= gene.end or mite.start >= gene.start or mite.end <= gene.end or mite.end >= gene.start
+        return (mite.start <= gene.end and mite.start >= gene.start) or (mite.end <= gene.end and mite.end >= gene.start)
 
     def _get_closest_mite_gene_pair(self, elements, mite, idx):
         left_gene = self._nearest_gene_left_of_idx(elements, idx)
@@ -64,26 +64,24 @@ class MitePairer:
         for genome_key in indexed_list:
             genome = indexed_list[genome_key]
             for chromosome_key in genome:
-                chromosome = genome[chromosome_key]
-                for strand_key in chromosome:
-                    elements = chromosome[strand_key].copy()
-                    elements.sort(key=lambda e : e.start)
-                    for idx in range(len(elements)):
-                        element = elements[idx]
-                        if element.type != CONSTANTS.mite_type:
-                            continue
+                elements = genome[chromosome_key].copy()
+                elements.sort(key=lambda e : e.start)
+                for idx in range(len(elements)):
+                    element = elements[idx]
+                    if element.type != CONSTANTS.mite_type:
+                        continue
 
-                        correlated_gene_id = element.correlated_gene
-                        if correlated_gene_id is not None:
-                            correlated_gene = index[genome_key][chromosome_key][strand_key][correlated_gene_id]
-                            if correlated_gene is not None:
-                                pair = MiteGenePair(element, correlated_gene)
-                                pairs.append(pair)
-                                continue
+                    correlated_gene_id = element.correlated_gene
+                    index_bin = index[genome_key][chromosome_key]
+                    if correlated_gene_id is not None and correlated_gene_id in index_bin and index_bin[correlated_gene_id].type == CONSTANTS.gene_type:
+                        correlated_gene = index_bin[correlated_gene_id]
+                        pair = MiteGenePair(element, correlated_gene)
+                        pairs.append(pair)
+                        continue
 
-                        pair = self._get_closest_mite_gene_pair(elements, element, idx)
+                    pair = self._get_closest_mite_gene_pair(elements, element, idx)
 
-                        if pair is not None:
-                            pairs.append(pair)
+                    if pair is not None:
+                        pairs.append(pair)
 
         return pairs
