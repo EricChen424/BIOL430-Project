@@ -1,5 +1,5 @@
 from unittest import TestCase
-from csv_parser.GeneCSVParaser import GeneCSVParser
+from csv_parser.GeneCSVParser import GeneCSVParser
 from csv_parser.model.Gene import Gene
 
 class TestGeneCSVParser(TestCase):
