@@ -51,3 +51,32 @@ class TestMite(TestCase):
         self.assertNotEqual(mite1, mite8)
         self.assertNotEqual(mite1, mite9)
         self.assertNotEqual(mite1, mite10)
+
+    def testToRowClassified(self):
+        mite = Mite("ABC", "4", "+", "132", "154", "gene1", "AA", "A", "3")
+        csv_row_string = mite.to_csv_row()
+        expected_string = "ABC,4,+,132,154,3,gene1,AA,A"
+        self.assertEqual(expected_string, csv_row_string)
+
+    def testToRowNullCorrelatedGene(self):
+        mite = Mite("ABC", "4", "+", "132", "154", "NULL", "AA", "A", "3")
+        csv_row_string = mite.to_csv_row()
+        expected_string = "ABC,4,+,132,154,3,,AA,A"
+        self.assertEqual(expected_string, csv_row_string)
+
+    def testToRowUnclassifiedFamily(self):
+        mite = Mite("ABC", "4", "+", "132", "154", "gene1", "Unclassified", "A", "3")
+        csv_row_string = mite.to_csv_row()
+        expected_string = "ABC,4,+,132,154,3,gene1,,A"
+        self.assertEqual(expected_string, csv_row_string)
+
+    def testToRowUnclassifiedSuperfamily(self):
+        mite = Mite("ABC", "4", "+", "132", "154", "gene1", "AA", "Unclassified", "3")
+        csv_row_string = mite.to_csv_row()
+        expected_string = "ABC,4,+,132,154,3,gene1,AA,"
+        self.assertEqual(expected_string, csv_row_string)
+
+    def testHeaders(self):
+        headers = Mite.csv_headers()
+        expected_string = "name,chromosome,strand,start,end,genome_id,correlated_gene,family,superfamily"
+        self.assertEqual(expected_string, headers)

@@ -1,4 +1,8 @@
 class GeneticElement:
+    @staticmethod
+    def csv_headers():
+        return "name,chromosome,strand,start,end,genome_id"
+
     def __init__(self, name, chromosome, strand, start, end, genome_id):
         self.name = name
         self.chromosome = int(chromosome)
@@ -9,3 +13,7 @@ class GeneticElement:
 
     def __eq__(self, other):
         return self.name == other.name and self.chromosome == other.chromosome and self.strand == other.strand and self.start == other.start and self.end == other.end and self.genome_id == other.genome_id
+
+    def to_csv_row(self):
+        string = str(self.name) + "," + str(self.chromosome) + "," + str(self.strand) + "," + str(self.start) + "," + str(self.end) + "," + str(self.genome_id)
+        return string

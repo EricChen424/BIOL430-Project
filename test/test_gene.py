@@ -33,3 +33,14 @@ class TestGene(TestCase):
         self.assertNotEqual(gene1, gene6)
         self.assertNotEqual(gene1, gene7)
         self.assertNotEqual(gene1, gene8)
+
+    def testToRow(self):
+        gene = Gene("ABC", "4", "+", "132", "154", "5", "3")
+        csv_row_string = gene.to_csv_row()
+        expected_string = "ABC,4,+,132,154,3,5"
+        self.assertEqual(expected_string, csv_row_string)
+
+    def testHeaders(self):
+        headers = Gene.csv_headers()
+        expected_string = "name,chromosome,strand,start,end,genome_id,exon_count"
+        self.assertEqual(expected_string, headers)

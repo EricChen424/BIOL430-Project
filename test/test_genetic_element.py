@@ -31,3 +31,13 @@ class TestGeneticElement(TestCase):
         self.assertNotEqual(element1, element6)
         self.assertNotEqual(element1, element7)
 
+    def testToRow(self):
+        element = GeneticElement("ABC", "4", "+", "132", "154", "3")
+        csv_row_string = element.to_csv_row()
+        expected_string = "ABC,4,+,132,154,3"
+        self.assertEqual(expected_string, csv_row_string)
+
+    def testHeaders(self):
+        headers = GeneticElement.csv_headers()
+        expected_string = "name,chromosome,strand,start,end,genome_id"
+        self.assertEqual(expected_string, headers)

@@ -28,7 +28,8 @@ class MitePairer:
         return None
 
     def _is_contained_in(self, gene, mite):
-        return (mite.start <= gene.end and mite.start >= gene.start) or (mite.end <= gene.end and mite.end >= gene.start)
+        return (mite.start <= gene.end and mite.start >= gene.start) or (
+                    mite.end <= gene.end and mite.end >= gene.start)
 
     def _get_closest_mite_gene_pair(self, elements, mite, idx):
         left_gene = self._nearest_gene_left_of_idx(elements, idx)
