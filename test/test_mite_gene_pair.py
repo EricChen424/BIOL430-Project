@@ -36,13 +36,29 @@ class TestMiteGenePair(TestCase):
         expected_string = "ABC,4,+,132,154,3,,,,gABC,4,+,160,170,3,5,6"
         self.assertEqual(expected_string, csv_row_string)
 
-    def testToRowInsideGene(self):
+    def testToRowOverlappingWithGene(self):
         mite = Mite("ABC", "4", "+", "132", "154", "NULL", "Unclassified", "Unclassified", "3")
         gene = Gene("gABC", "4", "+", "153", "160", "5", "3")
         pair = MiteGenePair(mite, gene)
         csv_row_string = pair.to_csv_row()
         expected_string = "ABC,4,+,132,154,3,,,,gABC,4,+,153,160,3,5,0"
         self.assertEqual(expected_string, csv_row_string)
+
+    def testToRowMiteInGene(self):
+        mite = Mite("ABC", "4", "+", "132", "154", "NULL", "Unclassified", "Unclassified", "3")
+        gene = Gene("gABC", "4", "+", "120", "160", "5", "3")
+        pair = MiteGenePair(mite, gene)
+        csv_row_string = pair.to_csv_row()
+        expected_string = "ABC,4,+,132,154,3,,,,gABC,4,+,120,160,3,5,0"
+        self.assertEqual(expected_string, csv_row_string)
+
+    # def testToRowGeneInMite(self):
+    #     mite = Mite("ABC", "4", "+", "132", "154", "NULL", "Unclassified", "Unclassified", "3")
+    #     gene = Gene("gABC", "4", "+", "140", "143", "5", "3")
+    #     pair = MiteGenePair(mite, gene)
+    #     csv_row_string = pair.to_csv_row()
+    #     expected_string = "ABC,4,+,132,154,3,,,,gABC,4,+,140,143,3,5,0"
+    #     self.assertEqual(expected_string, csv_row_string)
 
     def testHeaders(self):
         headers = MiteGenePair.csv_headers()
