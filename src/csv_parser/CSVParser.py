@@ -1,4 +1,4 @@
-from csv_parser.CSV import CSV
+from csv_parser.model.CSV import CSV
 
 class CSVParser:
     def __init__(self):

@@ -3,3 +3,5 @@ class CSV:
         self.headers = headers
         self.data = data
 
+    def __eq__(self, other):
+        pass #TODO
