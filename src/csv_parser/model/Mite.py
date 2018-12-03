@@ -4,7 +4,8 @@ from csv_parser.model.GeneticElement import GeneticElement
 class Mite(GeneticElement):
     @staticmethod
     def csv_headers():
-        return GeneticElement.csv_headers() + ",correlated_gene,family,superfamily"
+        return "mite_name,mite_chromosome,mite_strand,mite_start,mite_end,mite_genome_id,mite_correlated_gene," \
+               "mite_family,mite_superfamily"
 
     def __init__(self, name, chromosome, strand, start, end, correlated_gene, family, superfamily, genome_id):
         GeneticElement.__init__(self, name, chromosome, strand, start, end, genome_id)

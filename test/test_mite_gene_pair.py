@@ -46,5 +46,7 @@ class TestMiteGenePair(TestCase):
 
     def testHeaders(self):
         headers = MiteGenePair.csv_headers()
-        expected_string = "name,chromosome,strand,start,end,genome_id,correlated_gene,family,superfamily,name,chromosome,strand,start,end,genome_id,exon_count,distance"
+        expected_string = "mite_name,mite_chromosome,mite_strand,mite_start,mite_end,mite_genome_id," \
+                          "mite_correlated_gene,mite_family,mite_superfamily,gene_name,gene_chromosome,gene_strand," \
+                          "gene_start,gene_end,gene_genome_id,gene_exon_count,distance"
         self.assertEqual(expected_string, headers)

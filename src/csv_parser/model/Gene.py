@@ -4,7 +4,7 @@ from csv_parser.model.GeneticElement import GeneticElement
 class Gene(GeneticElement):
     @staticmethod
     def csv_headers():
-        return GeneticElement.csv_headers() + ",exon_count"
+        return "gene_name,gene_chromosome,gene_strand,gene_start,gene_end,gene_genome_id,gene_exon_count"
 
     def __init__(self, name, chromosome, strand, start, end, exon_count, genome_id):
         GeneticElement.__init__(self, name, chromosome, strand, start, end, genome_id)

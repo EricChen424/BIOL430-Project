@@ -42,5 +42,5 @@ class TestGene(TestCase):
 
     def testHeaders(self):
         headers = Gene.csv_headers()
-        expected_string = "name,chromosome,strand,start,end,genome_id,exon_count"
+        expected_string = "gene_name,gene_chromosome,gene_strand,gene_start,gene_end,gene_genome_id,gene_exon_count"
         self.assertEqual(expected_string, headers)

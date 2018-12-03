@@ -36,8 +36,3 @@ class TestGeneticElement(TestCase):
         csv_row_string = element.to_csv_row()
         expected_string = "ABC,4,+,132,154,3"
         self.assertEqual(expected_string, csv_row_string)
-
-    def testHeaders(self):
-        headers = GeneticElement.csv_headers()
-        expected_string = "name,chromosome,strand,start,end,genome_id"
-        self.assertEqual(expected_string, headers)

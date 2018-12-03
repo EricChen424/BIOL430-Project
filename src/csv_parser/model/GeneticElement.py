@@ -1,8 +1,4 @@
 class GeneticElement:
-    @staticmethod
-    def csv_headers():
-        return "name,chromosome,strand,start,end,genome_id"
-
     def __init__(self, name, chromosome, strand, start, end, genome_id):
         self.name = name
         self.chromosome = int(chromosome)
