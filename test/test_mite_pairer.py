@@ -14,8 +14,8 @@ class TestMitePairer(TestCase):
         mite3 = Mite("ABC2", "4", "+", "190", "200", "NULL", "AA", "A", "3")
         mite4 = Mite("ABC3", "4", "+", "50", "65", "NULL", "AA", "A", "3")
 
-        gene1 = Gene("ABC", "4", "+", "100", "115", "5", "3")
-        gene2 = Gene("BBC", "4", "+", "160", "170", "5", "3")
+        gene1 = Gene("gABC", "4", "+", "100", "115", "5", "3")
+        gene2 = Gene("gBBC", "4", "+", "160", "170", "5", "3")
         mites = [
             mite1,
             mite2,
@@ -39,8 +39,8 @@ class TestMitePairer(TestCase):
         #so we pair the two elements together rather than another gene that's not nested but may be closer
         mite1 = Mite("ABC", "4", "+", "132", "154", "NULL", "AA", "A", "3")
 
-        gene1 = Gene("ABC", "4", "+", "100", "143", "5", "3")
-        gene2 = Gene("BBC", "4", "+", "155", "170", "5", "3")
+        gene1 = Gene("gABC", "4", "+", "100", "143", "5", "3")
+        gene2 = Gene("gBBC", "4", "+", "155", "170", "5", "3")
 
         mites = [
             mite1
@@ -59,8 +59,8 @@ class TestMitePairer(TestCase):
         #sanity check
         mite1 = Mite("ABC", "4", "+", "132", "154", "NULL", "AA", "A", "3")
 
-        gene1 = Gene("ABC", "4", "+", "100", "143", "5", "3")
-        gene2 = Gene("BBC", "4", "+", "155", "170", "5", "3")
+        gene1 = Gene("gABC", "4", "+", "100", "143", "5", "3")
+        gene2 = Gene("gBBC", "4", "+", "155", "170", "5", "3")
 
         mites = [
             mite1
@@ -79,9 +79,9 @@ class TestMitePairer(TestCase):
         #we assume that correlated_gene was filled for a reason so we ignore our distance heuristic or any other heuristic
         mite1 = Mite("ABC", "4", "+", "132", "154", "ABC", "AA", "A", "3")
 
-        gene1 = Gene("ABC", "4", "+", "0", "10", "5", "3")
-        gene2 = Gene("BBC", "4", "+", "155", "170", "5", "3")
-        gene3 = Gene("CBC", "4", "+", "100", "143", "5", "3")
+        gene1 = Gene("gABC", "4", "+", "0", "10", "5", "3")
+        gene2 = Gene("gBBC", "4", "+", "155", "170", "5", "3")
+        gene3 = Gene("gCBC", "4", "+", "100", "143", "5", "3")
 
         mites = [
             mite1
@@ -101,9 +101,9 @@ class TestMitePairer(TestCase):
         #go back to heuristics if we can't find the correlated gene
         mite1 = Mite("ABC", "4", "+", "132", "154", "ABC", "AA", "A", "3")
 
-        gene1 = Gene("DBC", "4", "+", "0", "10", "5", "3")
-        gene2 = Gene("BBC", "4", "+", "155", "170", "5", "3")
-        gene3 = Gene("CBC", "4", "+", "100", "143", "5", "3")
+        gene1 = Gene("gDBC", "4", "+", "0", "10", "5", "3")
+        gene2 = Gene("gBBC", "4", "+", "155", "170", "5", "3")
+        gene3 = Gene("gCBC", "4", "+", "100", "143", "5", "3")
 
         mites = [
             mite1
