@@ -28,6 +28,7 @@ class CSVParser:
             line = self._get_next_line(file)
 
         csv = CSV(headers, data)
+        file.close()
         return csv
 
 
