@@ -24,10 +24,41 @@ clean_data <- removed_genes_in_mites %>%
   mutate(gene_length = gene_end - gene_start) %>%
   select(mite_name, mite_length, mite_family, mite_superfamily, gene_name, gene_length, distance)
 
+#count the number of gene-mites that overlap
 overlapping_mite_genes_count_clean_data <- clean_data %>% 
   filter(distance == 0) %>%
   nrow()
 
+#histogram
 clean_data %>%
   ggplot() +
   geom_histogram(aes(distance, fill=mite_superfamily), binwidth=150)
+
+#tables
+family_stats <- clean_data %>%
+  group_by(mite_family, mite_superfamily) %>%
+  summarize(mean_distance=mean(distance),median_distance=median(distance),mite_count=n()) %>%
+  arrange(mite_family, mite_count)
+
+superfamily_stats <- clean_data %>%
+  group_by(mite_superfamily) %>%
+  summarize(mean_distance=mean(distance),median_distance=median(distance),mite_count=n()) %>%
+  arrange(mite_count)
+
+#box plots
+clean_data %>%
+  ggplot(aes(x=mite_family, y=distance, color=mite_superfamily)) +
+  geom_boxplot(notch=TRUE) + 
+  stat_summary(fun.y=mean, geom="point", shape=23, size=3) +
+  theme(axis.text.x = element_text(angle = 45,
+                                   hjust = 1))
+
+clean_data %>%
+  ggplot(aes(x=mite_superfamily, y=distance, color=mite_superfamily)) +
+  geom_boxplot(notch=TRUE) + 
+  stat_summary(fun.y=mean, geom="point", shape=23, size=3) +
+  theme(axis.text.x = element_text(angle = 30,
+                                   hjust = 1))
+#Kruskal-Wallis
+kruskal.test(distance ~ as.factor(mite_family), data=clean_data)
+kruskal.test(distance ~ as.factor(mite_superfamily), data=clean_data)
