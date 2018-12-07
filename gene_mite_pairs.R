@@ -29,6 +29,11 @@ overlapping_mite_genes_count_clean_data <- clean_data %>%
   filter(distance == 0) %>%
   nrow()
 
+#total_stats
+distances <- clean_data$distance
+median_distance <- median(distances)
+mean_distance <- mean(distances)
+
 #histogram
 clean_data %>%
   ggplot() +
